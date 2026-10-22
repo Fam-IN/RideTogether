@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | RideTogether</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            background: #edf3f6;
+            color: #172b3a;
+        }
+
+        .navbar {
+            min-height: 76px;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid #e1e8ee;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #123f36;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #345e72;
+            color: white;
+            font-size: 23px;
+        }
+
+        .nav-link {
+            color: #31566b;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        main {
+            min-height: calc(100vh - 130px);
+            padding: 42px 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .layout {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 18px 55px rgba(30, 55, 70, .09);
+        }
+
+        .welcome {
+            padding: 48px 38px;
+            background: linear-gradient(145deg, #234d62, #153c37);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .badge {
+            display: inline-block;
+            width: fit-content;
+            padding: 8px 12px;
+            margin-bottom: 22px;
+            border: 1px solid #76949a;
+            border-radius: 25px;
+            font-size: 12px;
+            letter-spacing: 1.4px;
+            font-weight: 700;
+        }
+
+        .welcome h1 {
+            font-size: clamp(30px, 4vw, 42px);
+            line-height: 1.2;
+            margin-bottom: 17px;
+        }
+
+        .welcome p {
+            color: #d6e5e9;
+            line-height: 1.8;
+        }
+
+        .benefits {
+            list-style: none;
+            margin-top: 26px;
+        }
+
+        .benefits li {
+            margin-top: 16px;
+            font-size: 15px;
+        }
+
+        .form-panel {
+            padding: 43px 40px;
+        }
+
+        .form-panel h2 {
+            font-size: 30px;
+            margin-bottom: 9px;
+        }
+
+        .subtitle {
+            color: #718195;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .messages {
+            margin-bottom: 18px;
+        }
+
+        .message {
+            padding: 12px;
+            margin-bottom: 9px;
+            border-radius: 10px;
+            background: #eef7ef;
+            color: #25613b;
+            font-size: 14px;
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            display: block;
+            width: 100%;
+            min-height: 47px;
+            padding: 12px 13px;
+            border: 1px solid #d5dfe8;
+            border-radius: 10px;
+            background: #fbfcfe;
+            color: #172b3a;
+            font: inherit;
+            outline: none;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: #315db4;
+            box-shadow: 0 0 0 3px rgba(49, 93, 180, .12);
+        }
+
+        .help-text {
+            display: block;
+            margin-top: 7px;
+            color: #718195;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .error {
+            margin-top: 7px;
+            color: #b42318;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .form-error {
+            padding: 12px;
+            margin-bottom: 17px;
+            border: 1px solid #ffd3d3;
+            border-radius: 10px;
+            background: #fff0f0;
+            color: #a61b1b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .submit-button {
+            width: 100%;
+            min-height: 50px;
+            margin-top: 5px;
+            border: 0;
+            border-radius: 11px;
+            background: #2853ae;
+            color: white;
+            font-size: 16px;
+            font-weight: 750;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+        }
+
+        .submit-button:hover {
+            background: #1e438f;
+            transform: translateY(-1px);
+        }
+
+        .login-text {
+            margin-top: 23px;
+            text-align: center;
+            color: #718195;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .login-text a {
+            color: #2853ae;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            color: #788797;
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            main {
+                padding: 25px 14px;
+                align-items: flex-start;
+            }
+
+            .layout {
+                max-width: 480px;
+                grid-template-columns: 1fr;
+                border-radius: 20px;
+            }
+
+            .welcome {
+                padding: 28px 25px;
+            }
+
+            .welcome h1 {
+                font-size: 30px;
+            }
+
+            .welcome p {
+                font-size: 14px;
+            }
+
+            .benefits {
+                display: none;
+            }
+
+            .badge {
+                margin-bottom: 14px;
+            }
+
+            .form-panel {
+                padding: 30px 24px;
+            }
+
+            .navbar {
+                padding: 13px 18px;
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="brand" href="/">
+            <span class="brand-icon">R</span>
+            <span>RideTogether</span>
+        </a>
+
+        <a class="nav-link" href="/">Home</a>
+    </header>
+
+    <main>
+        <div class="layout">
+
+            <section class="welcome">
+                <span class="badge">YOUR JOURNEY STARTS HERE</span>
+
+                <h1>Find your people. Share your journey.</h1>
+
+                <p>
+                    Create your RideTogether account and discover a
+                    smarter way to travel with fellow riders.
+                </p>
+
+                <ul class="benefits">
+                    <li>✓ Find and offer rides</li>
+                    <li>✓ Connect with other travelers</li>
+                    <li>✓ Build your profile and ride history</li>
+                    <li>✓ Share ratings and reviews</li>
+                </ul>
+            </section>
+
+            <section class="form-panel">
+                <h2>Create Account</h2>
+
+                <p class="subtitle">
+                    Join RideTogether in just a few steps.
+                </p>
+
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="message">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {% for error in form.non_field_errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+
+                            {{ field }}
+
+                            {% if field.help_text %}
+                                <small class="help-text">
+                                    {{ field.help_text|safe }}
+                                </small>
+                            {% endif %}
+
+                            {% for error in field.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <button class="submit-button" type="submit">
+                        Create My Account →
+                    </button>
+                </form>
+
+                <p class="login-text">
+                    Already have an account?
+                    <a href="{% url 'login' %}">Log in</a>
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        © RideTogether · Travel together, travel with trust.
+    </footer>
+</body>
+</html>

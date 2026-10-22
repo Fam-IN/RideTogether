@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | RideTogether</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            background: #edf3f6;
+            color: #225b87;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            min-height: 76px;
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border-bottom: 1px solid #e1e8ee;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #031c1c;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: #345e72;
+            color: white;
+            border-radius: 14px;
+            font-size: 23px;
+        }
+
+        .nav-link {
+            color: #31566b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        main {
+            flex: 1;
+            width: 100%;
+            padding: 55px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-layout {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            background: white;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 18px 55px rgba(30, 55, 70, 0.09);
+        }
+
+        .welcome-panel {
+            padding: 55px 44px;
+            color: white;
+            background: linear-gradient(145deg, #234d62, #153c37);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            width: fit-content;
+            padding: 8px 13px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .welcome-panel h1 {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .welcome-panel p {
+            color: #d6e5e9;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .benefits {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .benefits li {
+            margin-top: 17px;
+            color: #f0f7f7;
+            font-size: 15px;
+        }
+
+        .form-panel {
+            padding: 52px 42px;
+        }
+
+        .form-panel h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #172b3a;
+        }
+
+        .subtitle {
+            color: #718195;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #eef7ef;
+            color: #25613b;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .field input {
+            display: block;
+            width: 100%;
+            min-height: 49px;
+            padding: 12px 14px;
+            border: 1px solid #d5dfe8;
+            border-radius: 11px;
+            background: #fbfcfe;
+            color: #172b3a;
+            font: inherit;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .field input:focus {
+            border-color: #315db4;
+            box-shadow: 0 0 0 3px rgba(49, 93, 180, .12);
+        }
+
+        .error {
+            margin-top: 7px;
+            color: #b42318;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .form-error {
+            padding: 12px;
+            margin-bottom: 18px;
+            background: #fff0f0;
+            border: 1px solid #ffd3d3;
+            border-radius: 10px;
+            color: #a61b1b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .login-button {
+            width: 100%;
+            min-height: 51px;
+            border: none;
+            border-radius: 11px;
+            background: #2853ae;
+            color: white;
+            font-size: 16px;
+            font-weight: 750;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+        }
+
+        .login-button:hover {
+            background: #1e438f;
+            transform: translateY(-1px);
+        }
+
+        .register-text {
+            text-align: center;
+            color: #718195;
+            margin-top: 24px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .register-text a {
+            color: #2853ae;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .register-text a:hover,
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            color: #788797;
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            main {
+                padding: 28px 15px;
+                align-items: flex-start;
+            }
+
+            .login-layout {
+                max-width: 460px;
+                grid-template-columns: 1fr;
+                border-radius: 20px;
+            }
+
+            .welcome-panel {
+                padding: 30px 25px;
+            }
+
+            .welcome-panel h1 {
+                font-size: 30px;
+            }
+
+            .welcome-panel p {
+                font-size: 14px;
+            }
+
+            .benefits {
+                display: none;
+            }
+
+            .welcome-badge {
+                margin-bottom: 15px;
+            }
+
+            .form-panel {
+                padding: 32px 25px;
+            }
+
+            .navbar {
+                padding: 13px 18px;
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+
+            .nav-link {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="brand" href="/">
+            <span class="brand-icon">R</span>
+            <span>RideTogether</span>
+        </a>
+
+        <a class="nav-link" href="/">Home</a>
+    </header>
+
+    <main>
+        <div class="login-layout">
+
+            <section class="welcome-panel">
+                <span class="welcome-badge">TRAVEL WITH TRUST</span>
+
+                <h1>Welcome back to your journey.</h1>
+
+                <p>
+                    Share rides, connect with fellow travelers,
+                    and make every journey a little easier.
+                </p>
+
+                <ul class="benefits">
+                    <li>✓ Find rides that fit your plans</li>
+                    <li>✓ Manage your ride requests</li>
+                    <li>✓ Build trust through reviews</li>
+                </ul>
+            </section>
+
+            <section class="form-panel">
+                <h2>Welcome Back</h2>
+
+                <p class="subtitle">
+                    Log in to continue with RideTogether.
+                </p>
+
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {% for error in form.non_field_errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+
+                    <div class="field">
+                        <label for="{{ form.username.id_for_label }}">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            name="{{ form.username.html_name }}"
+                            id="{{ form.username.id_for_label }}"
+                            value="{{ form.username.value|default_if_none:'' }}"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            maxlength="150"
+                            required
+                            autofocus
+                        >
+
+                        {% for error in form.username.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.password.id_for_label }}">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="{{ form.password.html_name }}"
+                            id="{{ form.password.id_for_label }}"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        {% for error in form.password.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <button class="login-button" type="submit">
+                        Log In →
+                    </button>
+                </form>
+
+                <p class="register-text">
+                    New to RideTogether?
+                    <a href="{% url 'register' %}">
+                        Create an account
+                    </a>
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        © RideTogether · Travel together, travel with trust.
+    </footer>
+</body>
+</html>

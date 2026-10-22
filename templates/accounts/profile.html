@@ -1,0 +1,375 @@
+<style>
+  .profile-page {
+    max-width: 1080px;
+    margin: 40px auto 70px;
+    padding: 0 22px;
+    color: #031c1c;
+    font-family: Inter, "Segoe UI", sans-serif;
+  }
+
+  .profile-heading {
+    margin-bottom: 28px;
+  }
+
+  .profile-eyebrow {
+    color: #051016;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .profile-heading h1 {
+    margin: 10px 0;
+    font-size: clamp(32px, 5vw, 46px);
+    letter-spacing: -1.8px;
+    color: #123b50;
+  }
+
+  .profile-heading p {
+    color: #718595;
+    font-size: 16px;
+  }
+
+  .profile-hero {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 35px;
+    border-radius: 24px;
+    color: white;
+    background: linear-gradient(120deg, #16485c, #287d78);
+    box-shadow: 0 15px 38px rgba(27, 67, 82, .13);
+    margin-bottom: 25px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,.17);
+    border: 3px solid rgba(255,255,255,.65);
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .profile-hero h2 {
+    margin: 0 0 7px;
+    font-size: 28px;
+    overflow-wrap: anywhere;
+  }
+
+  .profile-hero p {
+    margin: 5px 0;
+    color: #e1eff1;
+    overflow-wrap: anywhere;
+  }
+
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+    padding: 8px 13px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.15);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .profile-panel {
+    padding: 30px;
+    margin-bottom: 23px;
+    border: 1px solid #e5edf0;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 8px 28px rgba(24, 52, 71, .045);
+  }
+
+  .panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 24px;
+  }
+
+  .panel-heading h3 {
+    margin: 0;
+    color: #163d52;
+    font-size: 21px;
+  }
+
+  .panel-heading p {
+    margin: 7px 0 0;
+    color: #80909b;
+    font-size: 14px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+  }
+
+  .info-item {
+    padding: 19px;
+    min-width: 0;
+    border: 1px solid #e9eff2;
+    border-radius: 15px;
+    background: #f8fafb;
+  }
+
+  .info-label {
+    display: block;
+    margin-bottom: 9px;
+    color: #748795;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .info-value {
+    color: #183b50;
+    font-size: 16px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+  }
+
+  .status {
+    display: inline-block;
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .status-good {
+    background: #e3f5e9;
+    color: #197348;
+  }
+
+  .status-neutral {
+    background: #edf1f5;
+    color: #667886;
+  }
+
+  .profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .profile-actions p {
+    margin: 0;
+    color: #718595;
+    font-size: 14px;
+  }
+
+  .action-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .profile-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 45px;
+    padding: 0 19px;
+    border: 1px solid #d7e3e8;
+    border-radius: 11px;
+    background: white;
+    color: #21495f;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s, background .18s;
+  }
+
+  .profile-btn:hover {
+    transform: translateY(-2px);
+    background: #f2f8f8;
+  }
+
+  .profile-btn-primary {
+    background: #1e625b;
+    border-color: #1e625b;
+    color: white;
+  }
+
+  .profile-btn-primary:hover {
+    background: #174e49;
+    color: white;
+  }
+
+  .profile-btn-danger {
+    color: #b53b43;
+    border-color: #f0d7d9;
+  }
+
+  @media (max-width: 640px) {
+    .profile-page {
+      margin-top: 24px;
+      padding: 0 14px;
+    }
+
+    .profile-hero {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 25px;
+      gap: 17px;
+    }
+
+    .profile-avatar {
+      width: 76px;
+      height: 76px;
+      min-width: 76px;
+      font-size: 32px;
+    }
+
+    .profile-hero h2 {
+      font-size: 24px;
+    }
+
+    .profile-panel {
+      padding: 21px 17px;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .profile-actions,
+    .action-links {
+      align-items: stretch;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .profile-btn {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+</style>
+
+<div class="profile-page">
+  <header class="profile-heading">
+    <div class="profile-eyebrow">Your RideTogether account</div>
+    <h1>My Profile</h1>
+    <p>Your identity, your journey, your community.</p>
+  </header>
+
+  <section class="profile-hero">
+    <div class="profile-avatar">
+      {{ request.user.username|first|upper }}
+    </div>
+
+    <div>
+      <h2>{{ request.user.username }}</h2>
+      <p>{{ request.user.email|default:"No email added" }}</p>
+
+      <div class="trust-pill">
+        ★ Trust score: {{ profile.trust_score }}
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-panel">
+    <div class="panel-heading">
+      <div>
+        <h3>Personal information</h3>
+        <p>Your account details at a glance.</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Username</span>
+        <div class="info-value">{{ request.user.username }}</div>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Email address</span>
+        <div class="info-value">
+          {{ request.user.email|default:"Not provided" }}
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Phone number</span>
+        <div class="info-value">
+          {{ profile.phone_number|default:"Not provided" }}
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Gender</span>
+        <div class="info-value">
+          {{ profile.get_gender_display|default:"Not specified" }}
+        </div>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Phone verification</span>
+        {% if profile.is_phone_verified %}
+          <span class="status status-good">✓ Verified</span>
+        {% else %}
+          <span class="status status-neutral">Not verified</span>
+        {% endif %}
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">Trust score</span>
+        <div class="info-value">★ {{ profile.trust_score }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-panel">
+    <div class="panel-heading">
+      <div>
+        <h3>Keep moving</h3>
+        <p>Continue exploring your RideTogether account.</p>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <p>Your next journey starts with a connection.</p>
+
+      <div class="action-links">
+        <a class="profile-btn profile-btn-primary"
+           href="/">
+          Find a ride →
+        </a>
+
+        <a class="profile-btn"
+           href="/profile/">
+          My profile
+        </a>
+
+        <form method="post"
+              action="{% url 'logout' %}"
+              style="margin:0">
+          {% csrf_token %}
+          <button class="profile-btn profile-btn-danger"
+                  type="submit">
+            Log out
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
