@@ -1,9 +1,12 @@
-import dj_database_url
+
 import os
 from pathlib import Path
 
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Environment configuration
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
     "django-insecure-local-development-only-key",
@@ -20,26 +23,19 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
-
-SECRET_KEY = 'django-insecure-dev-only-change-before-production'
-DEBUG = True
-ALLOWED_HOSTS = []
-
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     "corsheaders",
-    'rest_framework',
-
-    # RideTogether apps
-    'accounts',
-    'rides',
-    'circles',
-    'reviews',
+    "rest_framework",
+    "accounts",
+    "rides",
+    "circles",
+    "reviews",
 ]
 
 MIDDLEWARE = [
@@ -54,30 +50,28 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
-ASGI_APPLICATION = 'config.asgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
 
-
-# Use PostgreSQL when DATABASE_URL is configured.
-# Keep SQLite for local development.
+# PostgreSQL in production; SQLite for local development.
 if os.environ.get("DATABASE_URL"):
     DATABASES = {
         "default": dj_database_url.parse(
@@ -93,35 +87,43 @@ else:
         }
     }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "MinimumLengthValidator"
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "CommonPasswordValidator"
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "NumericPasswordValidator"
+        ),
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Asia/Dhaka'
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Asia/Dhaka"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-# Allow the local React development server to submit requests.
-
-# Frontend origins allowed to make cross-origin API requests.
+# React frontend origins.
 CORS_ALLOWED_ORIGINS = [
     origin.strip()
     for origin in os.environ.get(
@@ -131,7 +133,7 @@ CORS_ALLOWED_ORIGINS = [
     if origin.strip()
 ]
 
-# Trusted origins for Django CSRF protection.
+# CSRF trusted origins.
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
     for origin in os.environ.get(
@@ -141,12 +143,11 @@ CSRF_TRUSTED_ORIGINS = [
     if origin.strip()
 ]
 
-# Uploaded profile photos (persistent production storage will be configured separately).
+# Uploaded media files.
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-
-# Production security settings
+# Production security.
 if not DEBUG:
     if (
         not os.environ.get("DJANGO_SECRET_KEY")
@@ -167,5 +168,5 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = "DENY"
 
-    # Enable HSTS only after HTTPS is confirmed to work.
+    # Enable HSTS after production HTTPS is verified.
     SECURE_HSTS_SECONDS = 0
